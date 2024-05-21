@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { ProductValidation } from './Product.validate';
-import ProductService from './Product.Service';
 import { z } from 'zod';
+import ProductService from './Product.Service';
+import { ProductValidation } from './Product.validate';
 
-// create product 
+// create product
 const CreateProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
@@ -24,14 +24,14 @@ const CreateProduct = async (req: Request, res: Response) => {
       res.status(400).json({
         success: false,
         message: 'Validation failed',
-        error, 
+        error,
       });
     } else {
       // Handle other errors
       res.status(500).json({
         success: false,
         message: 'An unexpected error occurred',
-        error, 
+        error,
       });
     }
   }
@@ -54,35 +54,57 @@ const GetProduct = async (req: Request, res: Response) => {
   }
 };
 
-
-const GetProductById = async(req:Request,res:Response)=>{
-    try{
-        const Id = req.params.productId
-        const result = await ProductService.GetProductByIdFromId(Id)
-        if(result){
-            res.status(200).json({
-                success: true,
-                message: "Product fetched successfully!",
-                data:result
-            })
-        }
-        else{
-            res.status(400).json({
-                success: false,
-                message: "Clouden't find the product!",
-            })
-        }
-
+const GetProductById = async (req: Request, res: Response) => {
+  try {
+    const Id = req.params.productId;
+    const result = await ProductService.GetProductByIdFromDb(Id);
+    if (result) {
+      res.status(200).json({
+        success: true,
+        message: 'Product fetched successfully!',
+        data: result,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "Clouden't find the product!",
+      });
     }
-    catch(error:unknown){
-     res.status(400).json({
-        success:false,
-        message:'Unexpected error occurred',
-        error
-     })
-    }
-}
+  } catch (error: unknown) {
+    res.status(400).json({
+      success: false,
+      message: 'Unexpected error occurred',
+      error,
+    });
+  }
+};
 
-const ProductController = { CreateProduct, GetProduct , GetProductById };
+const UpdateProductById = async (req: Request, res: Response) => {
+  try{
+    const Id = req.params.productId
+    const UpdateData = req.body
+    // const validatedProduct = ProductValidation.parse(UpdateData);
+    const result = await ProductService.UpdateProductByFromId(Id, UpdateData)
+    res.status(200).json({
+      success: true,
+      message: "Product updated successfully!",
+      data: result,
+    });
+  }
+  catch(error){
+    res.status(400).json({
+      success: false,
+      message: "Cloudn't update",
+      error,
+    });
+  }
+};
+
+const ProductController = {
+  CreateProduct,
+  GetProduct,
+  GetProductById,
+  UpdateProductById,
+};
 
 export default ProductController;

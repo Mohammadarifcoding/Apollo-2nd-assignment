@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongoose';
 import { ProductInterface } from './Product.interface';
 import ProductModel from './Product.model';
 
@@ -12,15 +11,25 @@ const GetProductFormDb = async () => {
   return result;
 };
 
-const GetProductByIdFromId = async(id : any)=>{
-    const result = await ProductModel.findById({_id : id})
-    return result
-}
+const GetProductByIdFromDb = async (id:string) => {
+  const result = await ProductModel.findById({ _id: id });
+  return result;
+};
 
+const UpdateProductByFromId = async(id : string,body : object)=>{
+  const UpdateDoc : any = {$set : {}}
+  Object.entries(body).forEach(([key,value])=>{
+    UpdateDoc.$set[key] = value
+  })
+  console.log(UpdateDoc)
+  const result = await ProductModel.updateOne({_id : id},UpdateDoc)
+  return result
+}
 
 const ProductService = {
   CreateProductIntoDb,
   GetProductFormDb,
-  GetProductByIdFromId
+  GetProductByIdFromDb,
+  UpdateProductByFromId
 };
 export default ProductService;
