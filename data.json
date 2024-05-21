@@ -1,0 +1,213 @@
+[
+    {
+      "name": "Bluetooth Headphones",
+      "description": "Over-ear Bluetooth headphones with noise-canceling technology.",
+      "price": 99.99,
+      "category": "Electronics",
+      "tags": ["audio", "wireless", "noise-canceling", "headphones"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Black"
+        },
+        {
+          "type": "color",
+          "value": "Silver"
+        }
+      ],
+      "inventory": {
+        "quantity": 200,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Smartphone Stand",
+      "description": "Adjustable smartphone stand with non-slip base.",
+      "price": 15.99,
+      "category": "Accessories",
+      "tags": ["phone", "stand", "adjustable", "non-slip"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Gray"
+        },
+        {
+          "type": "color",
+          "value": "Blue"
+        }
+      ],
+      "inventory": {
+        "quantity": 500,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Gaming Keyboard",
+      "description": "Mechanical gaming keyboard with RGB backlighting.",
+      "price": 79.99,
+      "category": "Electronics",
+      "tags": ["gaming", "keyboard", "mechanical", "RGB"],
+      "variants": [
+        {
+          "type": "switch",
+          "value": "Blue"
+        },
+        {
+          "type": "switch",
+          "value": "Red"
+        }
+      ],
+      "inventory": {
+        "quantity": 100,
+        "inStock": true
+      }
+    },
+    {
+      "name": "4K Monitor",
+      "description": "27-inch 4K UHD monitor with HDR support.",
+      "price": 399.99,
+      "category": "Electronics",
+      "tags": ["monitor", "4K", "UHD", "HDR"],
+      "variants": [
+        {
+          "type": "size",
+          "value": "27-inch"
+        },
+        {
+          "type": "size",
+          "value": "32-inch"
+        }
+      ],
+      "inventory": {
+        "quantity": 50,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Portable Charger",
+      "description": "10,000mAh portable charger with dual USB ports.",
+      "price": 25.49,
+      "category": "Electronics",
+      "tags": ["charger", "portable", "battery", "USB"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Black"
+        },
+        {
+          "type": "color",
+          "value": "White"
+        }
+      ],
+      "inventory": {
+        "quantity": 300,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Wireless Earbuds",
+      "description": "True wireless earbuds with Bluetooth 5.0 and touch controls.",
+      "price": 59.99,
+      "category": "Electronics",
+      "tags": ["audio", "wireless", "earbuds", "Bluetooth"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Black"
+        },
+        {
+          "type": "color",
+          "value": "White"
+        }
+      ],
+      "inventory": {
+        "quantity": 150,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Laptop Sleeve",
+      "description": "Water-resistant laptop sleeve with extra storage pockets.",
+      "price": 22.99,
+      "category": "Accessories",
+      "tags": ["laptop", "sleeve", "water-resistant", "storage"],
+      "variants": [
+        {
+          "type": "size",
+          "value": "13-inch"
+        },
+        {
+          "type": "size",
+          "value": "15-inch"
+        }
+      ],
+      "inventory": {
+        "quantity": 400,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Smart Watch",
+      "description": "Fitness tracker smart watch with heart rate monitor.",
+      "price": 129.99,
+      "category": "Wearables",
+      "tags": ["fitness", "smart watch", "heart rate", "tracker"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Black"
+        },
+        {
+          "type": "color",
+          "value": "Rose Gold"
+        }
+      ],
+      "inventory": {
+        "quantity": 120,
+        "inStock": true
+      }
+    },
+    {
+      "name": "USB-C Hub",
+      "description": "Multi-port USB-C hub with HDMI, USB 3.0, and SD card reader.",
+      "price": 49.99,
+      "category": "Electronics",
+      "tags": ["USB-C", "hub", "multi-port", "adapter"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Gray"
+        },
+        {
+          "type": "color",
+          "value": "Silver"
+        }
+      ],
+      "inventory": {
+        "quantity": 250,
+        "inStock": true
+      }
+    },
+    {
+      "name": "Electric Kettle",
+      "description": "1.7L electric kettle with temperature control and auto shut-off.",
+      "price": 39.99,
+      "category": "Home Appliances",
+      "tags": ["kettle", "electric", "temperature control", "auto shut-off"],
+      "variants": [
+        {
+          "type": "color",
+          "value": "Stainless Steel"
+        },
+        {
+          "type": "color",
+          "value": "Black"
+        }
+      ],
+      "inventory": {
+        "quantity": 180,
+        "inStock": true
+      }
+    }
+  ]
+  
