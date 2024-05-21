@@ -9,7 +9,7 @@ const VariantsValidation = z.object({
 // Inventory Validation
 const InventoryValidation = z.object({
   quantity: z.number().min(0, 'Inventory quantity is required'),
-  inStock: z.boolean(), // z.boolean() already ensures the value is a boolean
+  inStock: z.boolean(), 
 });
 
 // Product Validation

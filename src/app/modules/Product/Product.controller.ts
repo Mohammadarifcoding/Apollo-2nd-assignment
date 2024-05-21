@@ -3,6 +3,7 @@ import { ProductValidation } from './Product.validate';
 import ProductService from './Product.Service';
 import { z } from 'zod';
 
+// create product 
 const CreateProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
@@ -10,7 +11,6 @@ const CreateProduct = async (req: Request, res: Response) => {
     // Zod validation
     const validatedProduct = ProductValidation.parse(productData);
 
-    // Assuming ProductService.CreateProductIntoDb is your function to create the product in the database
     const result = await ProductService.CreateProductIntoDb(validatedProduct);
 
     res.status(200).json({
@@ -24,14 +24,14 @@ const CreateProduct = async (req: Request, res: Response) => {
       res.status(400).json({
         success: false,
         message: 'Validation failed',
-        error, // Sending validation errors in the response
+        error, 
       });
     } else {
       // Handle other errors
       res.status(500).json({
         success: false,
         message: 'An unexpected error occurred',
-        error, // Sending the error message in the response
+        error, 
       });
     }
   }
@@ -54,6 +54,35 @@ const GetProduct = async (req: Request, res: Response) => {
   }
 };
 
-const ProductController = { CreateProduct, GetProduct };
+
+const GetProductById = async(req:Request,res:Response)=>{
+    try{
+        const Id = req.params.productId
+        const result = await ProductService.GetProductByIdFromId(Id)
+        if(result){
+            res.status(200).json({
+                success: true,
+                message: "Product fetched successfully!",
+                data:result
+            })
+        }
+        else{
+            res.status(400).json({
+                success: false,
+                message: "Clouden't find the product!",
+            })
+        }
+
+    }
+    catch(error:unknown){
+     res.status(400).json({
+        success:false,
+        message:'Unexpected error occurred',
+        error
+     })
+    }
+}
+
+const ProductController = { CreateProduct, GetProduct , GetProductById };
 
 export default ProductController;

@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongoose';
 import { ProductInterface } from './Product.interface';
 import ProductModel from './Product.model';
 
@@ -11,8 +12,15 @@ const GetProductFormDb = async () => {
   return result;
 };
 
+const GetProductByIdFromId = async(id : any)=>{
+    const result = await ProductModel.findById({_id : id})
+    return result
+}
+
+
 const ProductService = {
   CreateProductIntoDb,
   GetProductFormDb,
+  GetProductByIdFromId
 };
 export default ProductService;
