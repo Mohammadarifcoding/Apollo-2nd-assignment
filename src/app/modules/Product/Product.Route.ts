@@ -3,10 +3,10 @@ import ProductController from './Product.controller';
 
 const ProductRoute = express.Router();
 
-ProductRoute.post('/products', ProductController.CreateProduct);
-ProductRoute.get('/products', ProductController.GetProduct);
-ProductRoute.get('/products/:productId', ProductController.GetProductById);
-ProductRoute.put('/products/:productId', ProductController.UpdateProductById);
-ProductRoute.delete('/products/:productId', ProductController.DeleteProductById);
+ProductRoute.post('/', ProductController.CreateProduct);
+ProductRoute.get('/', ProductController.GetProduct);
+ProductRoute.get('/:productId', ProductController.GetProductById);
+ProductRoute.put('/:productId', ProductController.UpdateProductById);
+ProductRoute.delete('/:productId', ProductController.DeleteProductById);
 
 export default ProductRoute;
