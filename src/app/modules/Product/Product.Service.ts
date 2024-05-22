@@ -7,6 +7,7 @@ const CreateProductIntoDb = async (product: ProductInterface) => {
 };
 
 const GetProductFormDb = async (searchterm: string) => {
+  //eslint-disable-next-line
   const filterDoc: any = {};
 
   if (searchterm) {
@@ -27,6 +28,7 @@ const GetProductByIdFromDb = async (id: string) => {
 };
 
 const UpdateProductByFromId = async (id: string, body: object) => {
+  //eslint-disable-next-line
   const UpdateDoc: any = { $set: {} };
   Object.entries(body).forEach(([key, value]) => {
     UpdateDoc.$set[key] = value;

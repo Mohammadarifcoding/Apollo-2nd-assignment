@@ -1,5 +1,4 @@
 import ProductModel from '../Product/Product.model';
-import ProductService from '../Product/Product.Service';
 import { OrderInterface } from './Order.interface';
 import OrderModel from './Order.model';
 
@@ -18,6 +17,7 @@ const CreateOrderToDb = async (order: OrderInterface) => {
                     "inventory.inStock" : NewQuantity > 0
 
             })
+            console.log(UpdateData)
             return result
         }
         else{
@@ -27,6 +27,7 @@ const CreateOrderToDb = async (order: OrderInterface) => {
 };
 
 const GetOrderByEmailFromDb = async (email: string) => {
+    //eslint-disable-next-line
     const filter : any = {}
     if(email){
         filter.email = email
