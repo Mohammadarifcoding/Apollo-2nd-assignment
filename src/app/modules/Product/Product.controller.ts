@@ -7,7 +7,7 @@ import { ProductValidation } from './Product.validate';
 const CreateProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
-   
+
     // Zod validation
     const validatedProduct = ProductValidation.parse(productData);
 
@@ -39,26 +39,24 @@ const CreateProduct = async (req: Request, res: Response) => {
 
 const GetProduct = async (req: Request, res: Response) => {
   try {
-    const searchterm :string  = req.query.searchTerm  as string 
+    const searchterm: string = req.query.searchTerm as string;
     const result = await ProductService.GetProductFormDb(searchterm);
-    if(searchterm){
+    if (searchterm) {
       res.status(200).json({
         success: true,
         message: `Products matching search term ${searchterm} fetched successfully!`,
         data: result,
       });
-    }else{
+    } else {
       res.status(200).json({
         success: true,
         message: 'Products fetched successfully!',
         data: result,
       });
     }
-
   } catch (error: unknown) {
-    console.log(error)
+    console.log(error);
     res.status(400).json({
-
       success: false,
       messege: 'Unexpected error occurred',
       error,
@@ -92,18 +90,17 @@ const GetProductById = async (req: Request, res: Response) => {
 };
 
 const UpdateProductById = async (req: Request, res: Response) => {
-  try{
-    const Id = req.params.productId
-    const UpdateData = req.body
+  try {
+    const Id = req.params.productId;
+    const UpdateData = req.body;
     // const validatedProduct = ProductValidation.parse(UpdateData);
-    const result = await ProductService.UpdateProductByFromId(Id, UpdateData)
+    const result = await ProductService.UpdateProductByFromId(Id, UpdateData);
     res.status(200).json({
       success: true,
-      message: "Product updated successfully!",
+      message: 'Product updated successfully!',
       data: result,
     });
-  }
-  catch(error){
+  } catch (error) {
     res.status(400).json({
       success: false,
       message: "Cloudn't update",
@@ -112,30 +109,30 @@ const UpdateProductById = async (req: Request, res: Response) => {
   }
 };
 
-const DeleteProductById = async(req:Request,res:Response)=>{
-  try{
-    const Id = req.params.productId
-    const result = await ProductService.DeleteProductByIdFromDb(Id)
+const DeleteProductById = async (req: Request, res: Response) => {
+  try {
+    const Id = req.params.productId;
+    const result = await ProductService.DeleteProductByIdFromDb(Id);
     res.status(200).json({
       success: true,
-      message: "Product deleted successfully!",
-      data:result
-    })
-  }catch(error){
+      message: 'Product deleted successfully!',
+      data: result,
+    });
+  } catch (error) {
     res.status(400).json({
       success: false,
       message: "Unexpectedly product cloudn't delete!",
-      error:error
-    })
+      error: error,
+    });
   }
-}
+};
 
 const ProductController = {
   CreateProduct,
   GetProduct,
   GetProductById,
   UpdateProductById,
-  DeleteProductById
+  DeleteProductById,
 };
 
 export default ProductController;
