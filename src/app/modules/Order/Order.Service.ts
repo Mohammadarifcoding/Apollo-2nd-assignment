@@ -6,5 +6,15 @@ const CreateOrderToDb = async (order: OrderInterface) => {
   return result;
 };
 
-const OrderService = { CreateOrderToDb };
+const GetOrderByEmailFromDb = async (email: string) => {
+    const filter : any = {}
+    if(email){
+        filter.email = email
+    }
+    const result = await OrderModel.find(filter);
+    return result;
+  };
+
+
+const OrderService = { CreateOrderToDb , GetOrderByEmailFromDb};
 export default OrderService;
