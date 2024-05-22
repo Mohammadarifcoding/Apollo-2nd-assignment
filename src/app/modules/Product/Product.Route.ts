@@ -7,5 +7,6 @@ ProductRoute.post('/products', ProductController.CreateProduct);
 ProductRoute.get('/products', ProductController.GetProduct);
 ProductRoute.get('/products/:productId', ProductController.GetProductById);
 ProductRoute.put('/products/:productId', ProductController.UpdateProductById);
+ProductRoute.delete('/products/:productId', ProductController.DeleteProductById);
 
 export default ProductRoute;

@@ -1,3 +1,4 @@
+
 import { ProductInterface } from './Product.interface';
 import ProductModel from './Product.model';
 
@@ -6,8 +7,19 @@ const CreateProductIntoDb = async (product: ProductInterface) => {
   return result;
 };
 
-const GetProductFormDb = async () => {
-  const result = await ProductModel.find();
+const GetProductFormDb = async (searchterm :string ) => {
+  const filterDoc : any = {
+  }
+
+   if(searchterm){
+    filterDoc.$or = [
+      { name : {$regex : searchterm , $options:'i'}},
+      { description : {$regex : searchterm , $options:'i'}},
+      { category : {$regex : searchterm , $options:'i'}},
+      { tags : {$regex : searchterm , $options:'i'}}
+    ]
+   }
+  const result = await ProductModel.find(filterDoc);
   return result;
 };
 
@@ -21,15 +33,22 @@ const UpdateProductByFromId = async(id : string,body : object)=>{
   Object.entries(body).forEach(([key,value])=>{
     UpdateDoc.$set[key] = value
   })
-  console.log(UpdateDoc)
   const result = await ProductModel.updateOne({_id : id},UpdateDoc)
   return result
+}
+
+
+const DeleteProductByIdFromDb = async(id : string)=>{ 
+  const result = await ProductModel.findOneAndDelete({_id : id})
+  return result
+
 }
 
 const ProductService = {
   CreateProductIntoDb,
   GetProductFormDb,
   GetProductByIdFromDb,
-  UpdateProductByFromId
+  UpdateProductByFromId,
+  DeleteProductByIdFromDb
 };
 export default ProductService;

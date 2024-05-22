@@ -7,7 +7,7 @@ import { ProductValidation } from './Product.validate';
 const CreateProduct = async (req: Request, res: Response) => {
   try {
     const productData = req.body;
-
+   
     // Zod validation
     const validatedProduct = ProductValidation.parse(productData);
 
@@ -39,14 +39,26 @@ const CreateProduct = async (req: Request, res: Response) => {
 
 const GetProduct = async (req: Request, res: Response) => {
   try {
-    const result = await ProductService.GetProductFormDb();
-    res.status(200).json({
-      success: true,
-      message: 'Products fetched successfully!',
-      data: result,
-    });
+    const searchterm :string  = req.query.searchTerm  as string 
+    const result = await ProductService.GetProductFormDb(searchterm);
+    if(searchterm){
+      res.status(200).json({
+        success: true,
+        message: `Products matching search term ${searchterm} fetched successfully!`,
+        data: result,
+      });
+    }else{
+      res.status(200).json({
+        success: true,
+        message: 'Products fetched successfully!',
+        data: result,
+      });
+    }
+
   } catch (error: unknown) {
+    console.log(error)
     res.status(400).json({
+
       success: false,
       messege: 'Unexpected error occurred',
       error,
@@ -100,11 +112,30 @@ const UpdateProductById = async (req: Request, res: Response) => {
   }
 };
 
+const DeleteProductById = async(req:Request,res:Response)=>{
+  try{
+    const Id = req.params.productId
+    const result = await ProductService.DeleteProductByIdFromDb(Id)
+    res.status(200).json({
+      success: true,
+      message: "Product deleted successfully!",
+      data:result
+    })
+  }catch(error){
+    res.status(400).json({
+      success: false,
+      message: "Unexpectedly product cloudn't delete!",
+      error:error
+    })
+  }
+}
+
 const ProductController = {
   CreateProduct,
   GetProduct,
   GetProductById,
   UpdateProductById,
+  DeleteProductById
 };
 
 export default ProductController;
