@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import orderValidation from './Order.validate';
 import { z } from 'zod';
 import OrderService from './Order.Service';
+import ProductService from '../Product/Product.Service';
+import ProductModel from '../Product/Product.model';
 
 const CreateOrder = async (req: Request, res: Response) => {
   try {
@@ -13,6 +15,7 @@ const CreateOrder = async (req: Request, res: Response) => {
       message: 'Order created successfully!',
       data: result,
     });
+   
   } catch (error: unknown) {
     if (error instanceof z.ZodError) {
       // Handle Zod validation errors
@@ -23,43 +26,40 @@ const CreateOrder = async (req: Request, res: Response) => {
       });
     } else {
       // Handle other errors
-      res.status(500).json({
+      res.status(400).json({
         success: false,
-        message: 'An unexpected error occurred',
-        error,
+        message: (error as Error).message,
       });
     }
   }
 };
 
-
-
 const GetProductByEmail = async (req: Request, res: Response) => {
-    try {
-      const email : string = req.query.email as string;
-      const result = await OrderService.GetOrderByEmailFromDb(email);
-      if (email) {
-        res.status(200).json({
-          success: true,
-          message: 'Orders fetched successfully for user email!',
-          data: result,
-        });
-      } else {
-        res.status(200).json({
-          success: true,
-          message: "Orders fetched successfully!",
-          data:result
-        });
-      }
-    } catch (error: unknown) {
-      res.status(400).json({
-        success: false,
-        message: 'Unexpected error occurred',
-        error,
+  try {
+    const email: string = req.query.email as string;
+    const result = await OrderService.GetOrderByEmailFromDb(email);
+    if (email) {
+      res.status(200).json({
+        success: true,
+        message: 'Orders fetched successfully for user email!',
+        data: result,
+      });
+    } else {
+      res.status(200).json({
+        success: true,
+        message: 'Orders fetched successfully!',
+        data: result,
       });
     }
-  };
+  } catch (error: unknown) {
+    res.status(400).json({
+      success: false,
+      message: 'Unexpected error occurred',
+      error,
+    });
+  }
+};
 
-const OrderController = { CreateOrder , GetProductByEmail };
+const OrderController = { CreateOrder, GetProductByEmail };
 
 export default OrderController;
